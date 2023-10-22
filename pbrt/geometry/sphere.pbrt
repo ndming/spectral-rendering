@@ -1,0 +1,7 @@
+Import "material/gold.pbrt"
+
+AttributeBegin
+    NamedMaterial "gold-glossy"
+    Translate 0.0 0.0 1.0
+    Shape "sphere"
+AttributeEnd

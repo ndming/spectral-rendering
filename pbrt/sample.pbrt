@@ -1,0 +1,66 @@
+# ******************************************************************************
+# pbrt-v4's scene description file for single-material samples. 
+# 
+# The scene is modeled according to settings in Blender. Note that Blender uses
+# right-handed coordinate systems, while pbrt's coordinate systems are 
+# left-handed. This means the y-component will be flipped when converting
+# Blender's coordinates to pbrt's coordinates.
+#
+# - LightSource:
+#     + RGB point light: [ 1.0  1.0  1.0 ]
+#     + Location: [ 4.0  0.0  5.0 ]
+#     + Power: 1000W
+# - Camera:
+#     + Projection: perspective
+#     + Focal length: 50mm
+#     + Sensor size: 36mm
+#     + Depth of field: disabled
+#     + Location: [ 4.5 -4.5  3.0 ]
+#     + Look-at direction [ -0.6797  0.6797 -0.2756 ]
+# - Renderer:
+#     + Cycles
+#     + Max pixel samples: 1024
+# - Film:
+#     + Filter method: Gaussian (pbrt default)
+#     + Filter width: 1.5 (pbrt default)
+# - Output:
+#     + Resolution X: 1920
+#     + Resolution Y: 1440
+#     + File format: .png
+#     + Color: 8-bit RGB
+# ******************************************************************************
+
+# Camera space transformation
+LookAt 	
+    4.5     4.5     3.0	    # eye
+    3.8203  3.8203  2.7244	# point
+    0.0     0.0     1.0	    # up
+
+# Camera's projection
+Camera "perspective"
+    "float fov" [ 30 ]
+    "float lensradius" [ 0 ] # disable depth of field
+
+# Sampler
+Sampler "halton" # for higher sampling rates
+    "integer pixelsamples" [ 512 ]
+
+# Integrator
+Integrator "volpath"
+
+# Film
+Film "rgb"
+    "integer xresolution" [ 1920 ]
+    "integer yresolution" [ 1440 ]
+    "string filename" [ "sample.png" ]
+
+WorldBegin
+
+LightSource "point"
+    "point3 from" [ 4.0 0.0 5.0 ]
+    "rgb I" [ 1.0 1.0 1.0 ] # emit white light
+    "float power" [ 1000 ]
+
+Import "geometry/sphere.pbrt"
+
+Import "geometry/stage.pbrt"

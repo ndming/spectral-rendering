@@ -1,0 +1,8 @@
+Texture "checkerstage" "spectrum" "checkerboard"
+    "float uscale" [ 4 ] 
+    "float vscale" [ 4 ]
+    "rgb tex1" [ .85  .85  .85 ]
+    "rgb tex2" [ .05  .05  .05 ]
+MakeNamedMaterial "diffuse-textured"
+    "string type" [ "diffuse" ]
+    "texture reflectance" "checkerstage"
