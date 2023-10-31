@@ -5,4 +5,4 @@ Texture "checkerstage" "spectrum" "checkerboard"
     "rgb tex2" [ .05  .05  .05 ]
 MakeNamedMaterial "diffuse-textured"
     "string type" [ "diffuse" ]
-    "texture reflectance" "checkerstage"
+    "rgb reflectance" [ 1.0 1.0 1.0 ]

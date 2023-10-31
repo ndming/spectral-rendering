@@ -1,11 +1,11 @@
 MakeNamedMaterial "gold-glossy"
-    "string type" [ "conductor" ]
-    "spectrum eta" [ "metal-Au-eta" ]
-    "spectrum k" [ "metal-Au-k" ]
-    "float roughness" [ 0.2 ]
+    "string type" [ "coatedconductor" ]
+    "spectrum conductor.eta" [ "metal-Au-eta" ]
+    "spectrum conductor.k" [ "metal-Au-k" ]
+    "float conductor.roughness" [ 0.1 ]
 
 MakeNamedMaterial "gold-matte"
-    "string type" [ "conductor" ]
-    "spectrum eta" [ "metal-Au-eta" ]
-    "spectrum k" [ "metal-Au-k" ]
-    "float roughness" [ 0.9 ]
+    "string type" [ "coatedconductor" ]
+    "spectrum conductor.eta" [ "metal-Au-eta" ]
+    "spectrum conductor.k" [ "metal-Au-k" ]
+    "float conductor.roughness" [ 0.9 ]

@@ -43,7 +43,7 @@ Camera "perspective"
 
 # Sampler
 Sampler "halton" # for higher sampling rates
-    "integer pixelsamples" [ 512 ]
+    "integer pixelsamples" [ 8 ]
 
 # Integrator
 Integrator "volpath"
