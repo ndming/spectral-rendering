@@ -1,0 +1,51 @@
+MakeNamedMaterial "alum-diffuse-inc45"
+    "string type" [ "diffuse" ]
+    "spectrum reflectance" [ "spd/reflectance/Al-inc45.spd" ]
+
+MakeNamedMaterial "alum-diffuse-inc0"
+    "string type" [ "diffuse" ]
+    "spectrum reflectance" [ "spd/reflectance/Al-inc0.spd" ]
+
+MakeNamedMaterial "alum"
+    "string type" [ "conductor" ]
+    "spectrum eta" [ "metal-Al-eta" ]
+    "spectrum k" [ "metal-Al-k" ]
+    "float roughness" [ .08 ]
+
+MakeNamedMaterial "alum-polished"
+    "string type" [ "conductor" ]
+    "spectrum eta" [ "metal-Al-eta" ]
+    "spectrum k" [ "metal-Al-k" ]
+    "float roughness" [ .01 ]
+
+MakeNamedMaterial "alum-tarnished"
+    "string type" [ "conductor" ]
+    "spectrum eta" [ "metal-Al-eta" ]
+    "spectrum k" [ "metal-Al-k" ]
+    "float roughness" [ .99 ]
+
+MakeNamedMaterial "alum-matte"
+    "string type" [ "coatedconductor" ]
+    "spectrum conductor.eta" [ "metal-Al-eta" ]
+    "spectrum conductor.k" [ "metal-Al-k" ]
+    "float conductor.roughness" [ .5 ]
+    "float interface.roughness" [ .99 ]
+    "float thickness" [ .05 ]
+
+MakeNamedMaterial "alum-glossy"
+    "string type" [ "coatedconductor" ]
+    "spectrum conductor.eta" [ "metal-Al-eta" ]
+    "spectrum conductor.k" [ "metal-Al-k" ]
+    "float conductor.roughness" [ .5 ]
+    "float interface.roughness" [ .01 ]
+    "float thickness" [ .05 ]
+
+Texture "pavers-disp" "float" "imagemap" 
+    "string filename" [ "texture/pavers/disp.exr" ]
+MakeNamedMaterial "alum-textured"
+    "string type" [ "conductor" ]
+    "spectrum eta" [ "metal-Al-eta" ]
+    "spectrum k" [ "metal-Al-k" ]
+    "float roughness" [ .02 ]
+    "texture displacement" [ "pavers-disp" ]
+    "string normalmap" [ "texture/pavers/normal.exr" ]

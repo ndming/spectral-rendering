@@ -1,0 +1,74 @@
+MakeNamedMaterial "caplet"
+    "string type" [ "coatedconductor" ]
+    "spectrum conductor.eta" [ "metal-MgO-eta" ]
+    "spectrum conductor.k" [ "metal-MgO-k" ]
+    "float conductor.roughness" [ .01 ]
+    "float interface.roughness" [ .02 ]
+    "spectrum interface.eta" [ "metal-TiO2-eta" ]
+    "float thickness" [ .1 ]
+
+MakeNamedMaterial "caplet-inc0"
+    "string type" [ "coatedconductor" ]
+    "spectrum conductor.eta" [ "metal-MgO-eta" ]
+    "spectrum conductor.k" [ "metal-MgO-k" ]
+    "float conductor.roughness" [ .01 ]
+    "float interface.roughness" [ .02 ]
+    "spectrum albedo" [ "spd/reflectance/Ti-inc0.spd" ]
+    "float thickness" [ .1 ]
+
+MakeNamedMaterial "caplet-inc45"
+    "string type" [ "coatedconductor" ]
+    "spectrum conductor.eta" [ "metal-MgO-eta" ]
+    "spectrum conductor.k" [ "metal-MgO-k" ]
+    "float conductor.roughness" [ .01 ]
+    "float interface.roughness" [ .02 ]
+    "spectrum albedo" [ "spd/reflectance/Ti-inc45.spd" ]
+    "float thickness" [ .1 ]
+
+MakeNamedMaterial "air"
+    "string type" [ "dielectric" ]
+    "float eta" [ 1.0 ]
+
+MakeNamedMaterial "pvc-inc0"
+    "string type" [ "diffusetransmission" ]
+    "spectrum reflectance" [ "spd/reflectance/PVC-inc0-r.spd" ]
+    "spectrum transmittance" [ "spd/reflectance/PVC-inc0-t.spd" ]
+MakeNamedMaterial "clamshell-inc0"
+    "string type" [ "mix" ]
+    "string materials" [ "pvc-inc0" "air" ]
+    "float amount" [ 0 ]
+
+MakeNamedMaterial "pvc-inc45"
+    "string type" [ "diffusetransmission" ]
+    "spectrum reflectance" [ "spd/reflectance/PVC-inc45-r.spd" ]
+    "spectrum transmittance" [ "spd/reflectance/PVC-inc45-t.spd" ]
+MakeNamedMaterial "clamshell-inc45"
+    "string type" [ "mix" ]
+    "string materials" [ "pvc-inc45" "air" ]
+    "float amount" [ 0 ]
+
+MakeNamedMaterial "translucent"
+    "string type" [ "diffusetransmission" ]
+    "spectrum reflectance" [ "spd/reflectance/PVC-inc45-r.spd" ]
+    "spectrum transmittance" [ "spd/reflectance/PVC-inc45-t.spd" ]
+MakeNamedMaterial "metalcoat"
+    "string type" [ "conductor" ]
+    "spectrum eta" [ "metal-Ag-eta" ]
+    "spectrum k" [ "metal-Ag-k" ]
+    "float roughness" [ 0.0 ]
+MakeNamedMaterial "clamshell"
+    "string type" [ "mix" ]
+    "string materials" [ "translucent" "metalcoat" ]
+    "float amount" [ .6 ]
+
+Texture "pavers-disp" "float" "imagemap" 
+    "string filename" [ "texture/pavers/disp.exr" ]
+MakeNamedMaterial "foil"
+    "string type" [ "coatedconductor" ]
+    "spectrum conductor.eta" [ "metal-Al-eta" ]
+    "spectrum conductor.k" [ "metal-Al-k" ]
+    "float conductor.roughness" [ .01 ]
+    "float interface.roughness" [ 0.5 ]
+    "float thickness" [ .05 ]
+    "texture displacement" [ "pavers-disp" ]
+    "string normalmap" [ "texture/pavers/normal.exr" ]

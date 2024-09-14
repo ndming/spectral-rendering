@@ -1,0 +1,4 @@
+MakeNamedMaterial "pvc"
+    "string type" [ "diffusetransmission" ]
+    "spectrum reflectance" [ "spd/reflectance/PVC-inc0-r.spd" ]
+    "spectrum transmittance" [ "spd/reflectance/PVC-inc0-t.spd" ]

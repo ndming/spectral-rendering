@@ -1,0 +1,144 @@
+# Camera space transformation
+LookAt 	
+    5.5     5.5     3.4	    # eye
+    0.0     0.0     0.0     # point
+    0.0     0.0     1.0	    # up
+
+# Camera's projection
+Camera "perspective"
+    "float fov" [ 30 ]
+    "float lensradius" [ 0 ] # disable depth of field
+
+# Sampler
+Sampler "halton" # for higher sampling rates
+    "integer pixelsamples" [ 512 ]
+
+# Integrator
+Integrator "volpath"
+
+Film "rgb"
+    "integer xresolution" [ 640 ]
+    "integer yresolution" [ 360 ]
+    "string filename" [ "out/rgb/blisterpack.png" ]
+
+WorldBegin
+Import "material/blisterpack.pbrt"
+
+# Left area light
+AttributeBegin
+    AreaLightSource "diffuse"
+        "spectrum L" [ "spd/illuminant/D50-1nm.spd" ]
+        "float power" [ 100 ]
+    Translate  -4.5  0.0  4.5
+    Rotate 135  0.0  1.0  0.0
+    Scale  0.5  2.0  1.0
+    Import "geometry/square.pbrt"
+AttributeEnd
+
+# Right area light
+AttributeBegin
+    AreaLightSource "diffuse"
+        "spectrum L" [ "spd/illuminant/D50-1nm.spd" ]
+        "float power" [ 100 ]
+    Translate  4.5  0.0  4.5
+    Rotate -135  0.0  1.0  0.0
+    Scale  0.5  2.0  1.0
+    Import "geometry/square.pbrt"
+AttributeEnd
+
+# Direct area light
+AttributeBegin
+    AreaLightSource "diffuse"
+        "spectrum L" [ "spd/illuminant/D65-1nm.spd" ]
+        "float power" [ 100 ]
+    Translate  0.0  4.5  4.5
+    Rotate 135  1.0  0.0  0.0
+    Scale  2.0  0.5  1.0
+    Import "geometry/square.pbrt"
+AttributeEnd
+
+# The sheet
+AttributeBegin
+    NamedMaterial "foil"
+    Shape "plymesh"
+        "string filename" [ "geometry/sheet.ply" ]
+AttributeEnd
+
+# The covers
+Identity
+ObjectBegin "cover"
+    NamedMaterial "clamshell"
+    Import "geometry/cover.pbrt"
+ObjectEnd
+
+Identity
+Translate -1.2  1.5  0.0
+ObjectInstance "cover"
+
+Identity
+Translate  1.2  1.5  0.0
+ObjectInstance "cover"
+
+Identity
+Translate -1.2  0.0  0.0
+ObjectInstance "cover"
+
+Identity
+Translate  1.2  0.0  0.0
+ObjectInstance "cover"
+
+Identity
+Translate -1.2 -1.5  0.0
+ObjectInstance "cover"
+
+Identity
+Translate  1.2 -1.5  0.0
+ObjectInstance "cover"
+
+# The pills
+Identity
+ObjectBegin "pill"
+    NamedMaterial "caplet"
+    Scale .9 .9 .9
+    Shape "plymesh"
+        "string filename" [ "geometry/pill.ply" ]
+ObjectEnd
+
+Identity
+Translate -1.2  1.5  0.0
+ObjectInstance "pill"
+
+Identity
+Translate  1.2  1.5  0.0
+ObjectInstance "pill"
+
+Identity
+Translate -1.2  0.0  0.0
+ObjectInstance "pill"
+
+Identity
+Translate  1.2  0.0  0.0
+ObjectInstance "pill"
+
+Identity
+Translate -1.2 -1.5  0.0
+ObjectInstance "pill"
+
+Identity
+Translate  1.2 -1.5  0.0
+ObjectInstance "pill"
+
+# The floor
+Identity
+AttributeBegin
+    Texture "checks" "spectrum" "checkerboard"
+        "float uscale" [ 12 ] 
+        "float vscale" [ 12 ]
+        "rgb tex1" [.1 .1 .1] 
+        "rgb tex2" [.9 .9 .9]
+    Material "diffuse"
+        "texture reflectance" [ "checks" ]
+    Scale 20.0  20.0  1.0
+    Translate 0 0 -0.01
+    Import "geometry/square.pbrt"
+AttributeEnd

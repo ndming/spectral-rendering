@@ -1,0 +1,46 @@
+# Camera space transformation
+LookAt 	
+    4.5     4.5     3.0	        # eye
+    3.8203  3.8203  2.7244	# point
+    0.0     0.0     1.0	        # up
+
+# Camera's projection
+Camera "perspective"
+    "float fov" [ 30 ]
+    "float lensradius" [ 0 ] # disable depth of field
+
+# Sampler
+Sampler "halton" # for higher sampling rates
+    "integer pixelsamples" [ 8 ]
+
+# Integrator
+Integrator "volpath"
+
+# Film
+Film "rgb"
+    "integer xresolution" [ 1920 ]
+    "integer yresolution" [ 1440 ]
+    "string filename" [ "out/sample_caplet.png" ]
+
+WorldBegin
+Import "material/blisterpack.pbrt"
+
+LightSource "point"
+    "point3 from" [ 4.0 0.0 5.0 ]
+    "spectrum I" [ "spd/illuminant/D50-1nm.spd" ]
+    "float power" [ 500 ]
+
+AttributeBegin
+    NamedMaterial "caplet-inc45"
+    Translate 0  0  1.0
+    Shape "sphere"
+AttributeEnd
+
+Texture "checkerstage" "spectrum" "checkerboard"
+    "float uscale" [ 4 ] 
+    "float vscale" [ 4 ]
+    "rgb tex1" [ .85  .85  .85 ]
+    "rgb tex2" [ .05  .05  .05 ]
+Material "diffuse"
+    "texture reflectance" [ "checkerstage" ]
+Import "geometry/stage.pbrt"

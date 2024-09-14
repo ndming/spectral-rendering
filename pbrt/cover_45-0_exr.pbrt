@@ -1,0 +1,49 @@
+# Camera space transformation
+LookAt 	
+    0.0     0.0     5.0	    # eye
+    0.0    -0.01    0.0     # point
+    0.0     0.0     1.0	    # up
+
+# Camera's projection
+Camera "perspective"
+    "float fov" [ 30 ]
+    "float lensradius" [ 0 ] # disable depth of field
+
+# Sampler
+Sampler "halton" # for higher sampling rates
+    "integer pixelsamples" [ 1024 ]
+
+# Integrator
+Integrator "volpath"
+
+# Film
+Film "spectral"
+    "integer xresolution" [ 800 ]
+    "integer yresolution" [ 600 ]
+    "string filename" [ "out/exr/cover_45-0.exr" ]
+    "integer nbuckets" [ 31 ]
+    "float lambdamin" [400]
+    "float lambdamax" [700]
+
+WorldBegin
+Import "material/blisterpack.pbrt"
+
+# Illuminant
+LightSource "distant"
+    "spectrum L" [ "spd/illuminant/D50-1nm.spd" ]
+    "point3 from" [ 0.0  0.0  0.0 ]
+    "point3 to" [ 0.0  1.0  -1.0 ]
+
+# The plastic cover
+AttributeBegin
+    NamedMaterial "clamshell"
+    Import "geometry/cover.pbrt"
+AttributeEnd
+
+# The floor
+AttributeBegin
+    Material "diffuse"
+        "spectrum reflectance" [ "spd/reflectance/spectralon.spd" ]
+    Scale 20.0  20.0  1.0
+    Import "geometry/square.pbrt"
+AttributeEnd

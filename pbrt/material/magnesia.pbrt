@@ -1,0 +1,33 @@
+MakeNamedMaterial "magnesia"
+    "string type" [ "conductor" ]
+    "spectrum eta" [ "metal-MgO-eta" ]
+    "spectrum k" [ "metal-MgO-k" ]
+    "float roughness" [ .5 ]
+
+MakeNamedMaterial "magnesia-polished"
+    "string type" [ "conductor" ]
+    "spectrum eta" [ "metal-MgO-eta" ]
+    "spectrum k" [ "metal-MgO-k" ]
+    "float roughness" [ .01 ]
+
+MakeNamedMaterial "magnesia-tarnished"
+    "string type" [ "conductor" ]
+    "spectrum eta" [ "metal-MgO-eta" ]
+    "spectrum k" [ "metal-MgO-k" ]
+    "float roughness" [ .99 ]
+
+MakeNamedMaterial "magnesia-matte"
+    "string type" [ "coatedconductor" ]
+    "spectrum conductor.eta" [ "metal-MgO-eta" ]
+    "spectrum conductor.k" [ "metal-MgO-k" ]
+    "float conductor.roughness" [ .5 ]
+    "float interface.roughness" [ .99 ]
+    "float thickness" [ .05 ]
+
+MakeNamedMaterial "magnesia-glossy"
+    "string type" [ "coatedconductor" ]
+    "spectrum conductor.eta" [ "metal-MgO-eta" ]
+    "spectrum conductor.k" [ "metal-MgO-k" ]
+    "float conductor.roughness" [ .5 ]
+    "float interface.roughness" [ .01 ]
+    "float thickness" [ .05 ]
